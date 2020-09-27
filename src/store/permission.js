@@ -1,4 +1,7 @@
-import { asyncRoutes, constRoutes } from "@/router";
+import {
+  asyncRoutes,
+  constRoutes
+} from "@/router";
 
 const state = {
   routes: [], // 完整路由表
@@ -14,7 +17,9 @@ const mutations = {
 
 const actions = {
   // 路由生成：在得到用户角色后会第一时间调用
-  generateRoutes({ commit }, roles) {
+  generateRoutes({
+    commit
+  }, roles) {
     return new Promise(resolve => {
       // 根据角色做过滤处理
       const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
@@ -34,7 +39,9 @@ export function filterAsyncRoutes(routes, roles) {
 
   routes.forEach(route => {
     // 复制一份
-    const tmp = { ...route };
+    const tmp = {
+      ...route
+    };
     // 如果用户有访问权则加入结果路由表
     if (hasPermission(roles, tmp)) {
       // 如果存在子路由则递归过滤之
